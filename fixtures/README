@@ -1,0 +1,11 @@
+4/22/12
+
+This directory needs a binary copy of git and a .fixtures/tmp/
+directory for the application to properly function.  
+
+In particular, git = Ubunto 10.04 LTS version compatible.
+
+And there is no compatible system tmp directory in cloud foundry, so
+the tmp directory needs to be stored locally.
+
+Do not move or rename these files.

@@ -1,0 +1,10 @@
+{
+ "name":"node-vmc-pusher",
+  "version":"0.0.1",
+  "dependencies":{
+      "express":"",
+      "vmcjs":"",
+      "assert":"",
+      "util":""
+  }
+}
