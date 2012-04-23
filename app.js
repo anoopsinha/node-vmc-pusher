@@ -80,24 +80,14 @@ function vmcPush(appName) {
        assert.equal(err, undefined, "Unexpected err in login: " + util.inspect(err));
        var appDir = './fixtures/' + appName;
 
-       console.log(fs.readdirSync('./fixtures'));
-       console.log(fs.readdirSync('./fixtures/' + appName));
-
 
     // delete our test app if already exists (purposely ignore any errors)
     vmc.deleteApp(appName, function(err, data){
         vmc.push(appName, appDir, function(err) {
-	    console.log("done with the push");
             assert.equal(err, undefined, "Unexpected err in push: " + util.inspect(err));
 	    vmc.start(appName, function(err, data){
 		    vmc.apps(function(err, apps) {
-			    console.dir(apps);
-			    console.log("DONE!\n\n");
-
-			    vmc.apps(function(err, apps) {
-				    console.dir(apps);
-				    console.log("DONE!\n\n");
-				});
+			    console.log("done successfully starting app");
 			});
 		});
             });
