@@ -1,5 +1,5 @@
-Node VMC Pusher
-===============
+Node VMC Pusher: A Github Service Hook for Cloudfoundry
+=========================================================
 
 Introduction
 ------------
