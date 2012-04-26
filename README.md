@@ -35,6 +35,9 @@ You will need to pick your own a unique name for the service hook.
      vmc env-add node-vmc-pusher CF_USER=<username>
      vmc env-add node-vmc-pusher CF_PWD=<password>
 
+#### Authorization: the code checks that the github pusher email address is the same as the cloudfoundry user specified.  Optionally you can whitelist other addresses to use the pusher.
+
+     vmc env-add node-vmc-pusher CF_WHITELIST=<emailaddress>,<emailaddress>
 
 In a future version of cloudfoundry, this mechanism will need to be re-written to use CF's oauth functionality.
 

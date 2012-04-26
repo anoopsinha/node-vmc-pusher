@@ -9,6 +9,7 @@ var vmcjs = require('vmcjs');
 var target = (process.env.CF_TARGET);
 var user = (process.env.CF_USER);
 var pwd = (process.env.CF_PWD);
+var whitelist = (process.env.CF_WHITELIST);
 
 var fs = require('fs');
 
@@ -26,9 +27,35 @@ app.post('/pusher', function(req, res){
     console.log('post received');
     try {
 	p = req.body.payload;
+
+	console.log(p);
+
 	obj = JSON.parse(p);
 	obj.repository.url = obj.repository.url.replace("https", "git") + ".git"
 	console.log(obj.repository.url + " " + obj.repository.name);
+
+	console.log(obj.pusher.email + " vs. " + user);
+
+        if (obj.pusher.email != user) {	
+	    if (typeof whitelist == 'undefined') {
+		// exit here
+		console.log(obj.pusher.email + " doesn't match " + user + ". not authorized to push");
+		res.send('Not authorized to push.');	
+		return;
+	    } else {
+		if (whitelist.indexOf(obj.pusher.email) == -1) {
+		    console.log(obj.pusher.email + " not in whitelist: " + whitelist + ". not authorized to push");
+		    res.send('Not authorized to push.');	
+		    return;
+		} else {
+		    console.log(obj.pusher.email + " in whitelist: " + whitelist + ". valid to push");
+		}
+	    }
+	} else {
+		console.log(obj.pusher.email + " matches " + user + ". valid to push");
+	}
+
+	
 
 	var cmd = "cd fixtures; ls; chmod +x git; rm -rf " + obj.repository.name + "; ./git clone " + obj.repository.url +"; ls; cd ..";
 
