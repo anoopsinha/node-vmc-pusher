@@ -26,7 +26,9 @@ app.configure(function(){
 app.post('/pusher', function(req, res){
     console.log('post received');
     var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+    ip = ip.split(',')[0].trim(); // it's possible to get multiple ip if using multiple reverse proxy
     if(GITHUBIP.indexOf(ip)==-1){
+      console(ip+'rejected');
       return res.send('Not authorized to push. '+ip);
     }
     try {
