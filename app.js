@@ -34,6 +34,9 @@ app.post('/pusher', function(req, res){
 	obj.repository.url = obj.repository.url.replace("https", "git") + ".git"
 	console.log(obj.repository.url + " " + obj.repository.name);
 
+  if(!obj.pusher.email){
+    obj.pusher.email='undefined';
+  }
 	console.log(obj.pusher.email + " vs. " + user);
 
         if (obj.pusher.email != user) {	

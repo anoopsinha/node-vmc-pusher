@@ -54,6 +54,14 @@ In a future version of cloudfoundry, this mechanism will need to be re-written t
 
 This will take the repository name as the application name and push that to cloudfoundry.com when pushed.
 
+FAQ
+-----
+
+#### It doesn't work with my organization account!
+
+For repositories in an organization account, no email is binding to a push. So you need to add the email `undefined` in whitelist.
+
+     vmc env-add node-vmc-pusher CF_WHITELIST=undefined
 
 Notes
 -----
