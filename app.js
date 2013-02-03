@@ -10,7 +10,7 @@ var target = (process.env.CF_TARGET);
 var user = (process.env.CF_USER);
 var pwd = (process.env.CF_PWD);
 var whitelist = (process.env.CF_WHITELIST);
-
+var GITHUBIP = '207.97.227.253, 50.57.128.197, 108.171.174.178, 50.57.231.61.';
 var fs = require('fs');
 
 function puts(error, stdout, stderr) { util.puts(stdout) }
@@ -25,6 +25,10 @@ app.configure(function(){
 
 app.post('/pusher', function(req, res){
     console.log('post received');
+    var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+    if(GITHUBIP.indexOf(ip)==-1){
+      return res.send('Not authorized to push. '+ip);
+    }
     try {
 	p = req.body.payload;
 
@@ -82,7 +86,7 @@ app.post('/pusher', function(req, res){
 
 app.get('/pusher', function(req, res){
     console.log('get received');
-    console.log(req);
+    // console.log(req);
     res.send('Done with get'); 
 });
 
