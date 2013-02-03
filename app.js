@@ -109,14 +109,9 @@ function vmcPush(appName) {
 
 
         vmc.update(appName, appDir, function(err) {
-            assert.equal(err, undefined, "Unexpected err in push: " + util.inspect(err));
-	    vmc.restart(appName, function(err, data){
-        if(err){
-		    return console.error("Unexpected err in push: " + err.message);
-      }
-			    console.log("done successfully starting app");
-		});
-            });
+          assert.equal(err, undefined, "Unexpected err in push: " + util.inspect(err));
+          console.log("done successfully updating app");
+        });
     });
 
 }
