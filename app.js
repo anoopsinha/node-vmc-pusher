@@ -108,9 +108,7 @@ function vmcPush(appName) {
        var appDir = './fixtures/' + appName;
 
 
-    // delete our test app if already exists (purposely ignore any errors)
-    vmc.deleteApp(appName, function(err, data){
-        vmc.push(appName, appDir, function(err) {
+        vmc.update(appName, appDir, function(err) {
             assert.equal(err, undefined, "Unexpected err in push: " + util.inspect(err));
 	    vmc.start(appName, function(err, data){
 		    vmc.apps(function(err, apps) {
@@ -118,7 +116,6 @@ function vmcPush(appName) {
 			});
 		});
             });
-        });
     });
 
 }
