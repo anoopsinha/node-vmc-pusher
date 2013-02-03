@@ -43,7 +43,7 @@ In a future version of cloudfoundry, this mechanism will need to be re-written t
 
 #### Step 3. Set the github service hook for your repository to this url.
 
-     Repository -> Admin -> Service Hooks -> PostReceive URLs
+     Repository -> Admin -> Service Hooks -> WebHook URLs
      http://node-vmc-pusher.cloudfoundry.com/pusher
 
 
