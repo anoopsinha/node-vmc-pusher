@@ -10,7 +10,7 @@ var target = (process.env.CF_TARGET);
 var user = (process.env.CF_USER);
 var pwd = (process.env.CF_PWD);
 var whitelist = (process.env.CF_WHITELIST);
-var GITHUBIP = '207.97.227.253, 50.57.128.197, 108.171.174.178, 50.57.231.61.';
+var GITHUBIP = '207.97.227.253/32, 50.57.128.197/32, 108.171.174.178/32, 50.57.231.61/32, 54.235.183.49/32, 54.235.183.23/32, 54.235.118.251/32, 54.235.120.57/32, 54.235.120.61/32, 54.235.120.62/32.';
 var fs = require('fs');
 
 function puts(error, stdout, stderr) { util.puts(stdout) }
